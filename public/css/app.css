@@ -33,6 +33,10 @@ body {
     background-color: var(--color-primary);
 }
 
+.sidebar img {
+    max-width: 100%;
+}
+
 nav {
     width: calc(100vw - 100px);
     height: 100px;
@@ -47,6 +51,11 @@ nav {
     padding: 20px 30px;
     border-radius: 10px;
     text-decoration: none;
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
 }
 
 .btn-primary {
@@ -63,6 +72,19 @@ main {
 .graph {
     flex: 1;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.graph-info-area {
+    width: 100%;
+}
+
+.graph-msg-area {
+    display: flex;
+    align-items: center;
 }
 
 .list {
@@ -113,5 +135,156 @@ main {
 
 .graph-info-area-bot>b {
     color: var(--color-primary-light);
+}
+
+.select_tasks select {
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.area_tasks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    justify-content: center;
+}
+
+.area_tasks_item {
+    display: flex;
+    padding: 40px 20px;
+    background-color: var(--background-light);
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.area_tasks_item:hover {
+    background-color: var(--background-light-hover);
+    transform: scale(1.01);
+    border-radius: 8px;
+}
+
+.area_tasks_item_title {
+    display: flex;
+}
+
+/* Styling a checkbox */
+.css-checkbox {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+#inputPreview {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.css-checkbox+label {
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    color: rgb(97, 97, 97);
+}
+
+.css-checkbox+label::before {
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 20px;
+    height: 20px;
+    /* background-color: rgb(67, 176, 42); */
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+.css-checkbox:checked+label::after {
+    content: " ";
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuMjA0LS4wMDF6Ii8+PC9zdmc+");
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    background-position: center center;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    background-color: blue;
+    font-size: 10px;
+    height: 22px;
+    width: 22px;
+}
+
+#inputPreview .text {
+    font-weight: bold;
+    font-size: 16px;
+    color: #444;
+}
+
+/*  */
+
+.area_tasks_item_priority {
+    display: flex;
+}
+
+.priority_mark {
+    width: 22px;
+    height: 22px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.priority_description {
+    font-weight: bold;
+    font-size: 16px;
+    color: #777;
+}
+
+.area_tasks_item_actions {
+    display: flex;
+}
+
+.area_tasks_item_actions img {
+    margin: 0px 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    transition: all .3s ease-in-out;
+}
+
+.area_tasks_item_actions img:hover {
+    transform: scale(1.3);
+}
+
+.area_tasks_item_actions img.btn-edit:hover {
+    background-color: rgba(0, 128, 0, 0.1);
+}
+
+.area_tasks_item_actions img.btn-delete:hover {
+    background-color: rgba(255, 0, 0, 0.1);
 }
 
