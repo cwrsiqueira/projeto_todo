@@ -20,6 +20,7 @@ class TaskFactory extends Factory
             $user = User::all()->random();
         }
         return [
+            'done' => $this->faker->boolean(30),
             'title' => $this->faker->jobTitle(),
             'description' => $this->faker->paragraph(),
             'due_date' => $this->faker->dateTime('2022-12-31'),

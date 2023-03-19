@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->boolean('done')->default(false);
             $table->string('title');
             $table->string('description')->nullable();
             $table->dateTime('due_date');

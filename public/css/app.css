@@ -6,6 +6,7 @@
     --text-dark: #0A0040;
     --color-primary: #6143FF;
     --color-primary-light: #43a4ff;
+    --alert-danger: red;
 }
 
 * {
@@ -47,6 +48,14 @@ nav {
     padding: 20px;
 }
 
+.is_invalid {
+    border: 1px solid var(--alert-danger) !important;
+}
+
+a {
+    margin: 0px 10px;
+}
+
 .btn {
     padding: 20px 30px;
     border-radius: 10px;
@@ -56,6 +65,7 @@ nav {
 
 .btn:hover {
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -74,8 +84,12 @@ main {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+}
+
+.graph-img-area {
+    padding: 50px 0px;
 }
 
 .graph-info-area {
@@ -173,6 +187,44 @@ main {
     display: flex;
 }
 
+form {
+    flex: 1;
+}
+
+label {
+    display: block;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid transparent;
+    outline: none;
+}
+
+.form-control:focus {
+    border: 1px solid #43a4ff;
+}
+
+.m-3 {
+    width: 25%;
+}
+
+.alert-small {
+    color: var(--alert-danger);
+}
+
 /* Styling a checkbox */
 .css-checkbox {
     position: absolute;
@@ -242,7 +294,6 @@ main {
     font-size: 16px;
     color: #444;
 }
-
 /*  */
 
 .area_tasks_item_priority {
@@ -252,7 +303,7 @@ main {
 .priority_mark {
     width: 22px;
     height: 22px;
-    background-color: red;
+    background-color: #AAA;
     border-radius: 50%;
     margin-right: 20px;
 }
