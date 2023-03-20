@@ -46,13 +46,19 @@ class TaskController extends Controller
     {
         //
         $data = $request->except('_token');
-        Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required',
-            'due_date' => 'required',
-            'user_id' => 'required',
-            'category_id' => 'required',
-        ])->validate();
+        Validator::make(
+            $data,
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'due_date' => 'required',
+                'user_id' => 'required',
+                'category_id' => 'required',
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório'
+            ]
+        )->validate();
         Task::insert($data);
         return redirect()->route('home');
     }

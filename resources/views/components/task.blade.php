@@ -1,4 +1,4 @@
-<div class="area_tasks_item" title="Visualizar Tarefa">
+<div class="area_tasks_item" title="Prazo: {{ date('d/m/Y H:i:s', strtotime($data->due_date)) }} - Responsável: {{ $data->user->name }} - Descrição: {{ $data->description }}">
     <div class="area_tasks_item_title">
 
         <div id="inputPreview" title="Marcar/Desmarcar Concluída">

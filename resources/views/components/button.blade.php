@@ -1,1 +1,1 @@
-<a href="{{$href}}" class="btn btn-primary">{{$title}}</a>
+<a href="{{$href}}" class="btn {{ $class ?? '' }}">{{$title}}</a>

@@ -1,47 +1,46 @@
 <x-layout>
     <x-slot name="btn">
-        <x-button href="/" title="Voltar" />
+        <x-button href="/" title="Voltar" class="btn-primary" />
     </x-slot>
-    <h1>Adicionar Tarefa</h1>
-    <form action="{{route('tasks.store')}}" method="post">
-        @csrf
-
-        <label for="title">Título:</label>
-        <input class="form-control @if($errors->any()) is_invalid @endif" type="text" name="title" id="title" value="{{old('title')}}">
+    <div class="form-area">
+        <h1>Adicionar Tarefa</h1>
         @if ($errors->any())
-            <small class="alert-small">O campo Título é obrigatório.</small>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
+        <form action="{{route('tasks.store')}}" method="post">
+            @csrf
 
-        <label for="title">Descrição:</label>
-        <input class="form-control" type="text" name="description" id="description" value="{{old('description')}}">
+            <x-input  name="title" label="Título" placeholder="Digite o título" value="{{ old('title') ?? '' }}" />
 
-        <div class="row">
-            <div class="form-group m-3">
-                <label for="title">Prazo:</label>
-                <input class="form-control" type="datetime-local" name="due_date" id="due_date" value="{{old('due_date') ?? date('Y-d-m h:i')}}">
+            <x-text_area
+                name="description"
+                label="Descrição"
+                placeholder="Digite a descrição"
+                value="{{ old('description') ?? '' }}"
+            />
+
+            <x-select name="user_id" label="Responsável" :items=$users optionValue="id" optionLabel="name"  />
+
+            <div class="row">
+                <x-input name="due_date" label="Prazo" type="datetime-local" value="{{old('due_date') ?? date('Y-d-m h:i')}}"  />
+
+                <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"  />
             </div>
 
-            <div class="form-group m-3">
-                <label for="user">Responsável:</label>
-                <select class="form-control" name="user_id" id="user">
-                    <option>Selecione...</option>
-                    @foreach ($users as $user)
-                        <option value="{{$user->id}}">{{$user->name}}</option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <x-input type="submit" value="Salvar" name="submit" class="btn btn-primary"/>
+                @if(!old())
+                    <x-input type="reset" value="Limpar Formulário" name="submit" class="btn"/>
+                @else
+                    <x-button href="{{ route('tasks.create') }}" title="Limpar Formulário" class="form-control tagA-inputBtn" />
+                @endif
             </div>
-
-            <div class="form-group m-3">
-                <label for="category">Categoria:</label>
-                <select class="form-control" name="category_id" id="category">
-                    <option>Selecione...</option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->title}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
-        <input type="submit" value="Salvar" class="btn btn-primary">
-    </form>
+        </form>
+    </div>
 </x-layout>

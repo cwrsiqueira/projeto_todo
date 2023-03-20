@@ -1,7 +1,7 @@
 <x-layout page="Home">
 
     <x-slot name="btn">
-        <x-button href="{{route('tasks.create')}}" title="Adicionar Tarefa" />
+        <x-button href="{{route('tasks.create')}}" title="Adicionar Tarefa" class="btn-primary" />
     </x-slot>
 
     <section class="graph">

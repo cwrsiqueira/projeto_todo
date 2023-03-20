@@ -6,7 +6,8 @@
     --text-dark: #0A0040;
     --color-primary: #6143FF;
     --color-primary-light: #43a4ff;
-    --alert-danger: red;
+    --alert-bg-danger: #ffc5c5;
+    --alert-color-danger: red;
 }
 
 * {
@@ -49,7 +50,10 @@ nav {
 }
 
 .is_invalid {
-    border: 1px solid var(--alert-danger) !important;
+    border: 1px solid var(--alert-color-danger) !important;
+}
+.is-invalid {
+    border: 1px solid var(--alert-color-danger) !important;
 }
 
 a {
@@ -57,8 +61,8 @@ a {
 }
 
 .btn {
-    padding: 20px 30px;
-    border-radius: 10px;
+    padding: 20px 30px !important;
+    border-radius: 10px !important;
     text-decoration: none;
     transition: all .3s ease-in-out;
 }
@@ -69,14 +73,22 @@ a {
 }
 
 .btn-primary {
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-primary) !important;
     background-color: var(--color-primary);
     color: var(--background-white);
+}
+
+.tagA-inputBtn {
+    height: 57px;
+    margin-top: 20px !important;
+    font-size: 13px;
+    text-align: center;
 }
 
 main {
     display: flex;
     padding: 20px;
+    justify-content: center;
 }
 
 .graph {
@@ -188,7 +200,7 @@ main {
 }
 
 form {
-    flex: 1;
+    width: 100%;
 }
 
 label {
@@ -198,10 +210,19 @@ label {
 .row {
     display: flex;
     justify-content: space-between;
+    gap: 15px;
+}
+
+.form-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 820px;
 }
 
 .form-group {
     margin: 10px 0;
+    width: 100%;
 }
 
 .form-control {
@@ -209,8 +230,10 @@ label {
     width: 100%;
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid transparent;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     outline: none;
+    margin-bottom: 0px;
 }
 
 .form-control:focus {
@@ -218,11 +241,25 @@ label {
 }
 
 .m-3 {
-    width: 25%;
+    width: 30%;
+}
+
+.alert {
+    background-color: #eee;
+    padding: 20px 50px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.alert-danger {
+    background-color: var(--alert-bg-danger);
+}
+.alert-danger li {
+    color: var(--alert-color-danger);
 }
 
 .alert-small {
-    color: var(--alert-danger);
+    color: var(--alert-color-danger);
 }
 
 /* Styling a checkbox */
