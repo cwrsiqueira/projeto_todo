@@ -1,7 +1,7 @@
 <x-layout page="Home">
 
     <x-slot name="btn">
-        <x-button href="{{route('tasks.create')}}" title="Adicionar Tarefa" class="btn-primary" />
+        <x-button href="{{ route('tasks.create') }}" title="Adicionar Tarefa" class="btn-primary" />
     </x-slot>
 
     <section class="graph">
@@ -38,6 +38,7 @@
             </select>
         </div>
         <div class="area_tasks">
+            <x-alert type="success" message="{{ session('success') }}" />
             @foreach ($tasks as $task)
                 <x-task :data=$task />
             @endforeach

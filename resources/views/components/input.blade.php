@@ -5,13 +5,15 @@
     <input
         class="form-control {{ $class ?? '' }}"
         type="{{empty($type) ? 'text' : $type}}"
-        id="{{$name}}"
-        name="{{$name}}"
+        id="{{$name ?? ''}}"
+        name="{{$name ?? ''}}"
         placeholder="{{$placeholder ?? ''}}"
         value="{{ $value ?? '' }}"
         {{empty($required) ? '' : 'required'}}
     >
-    @error($name)
-        <small style="color:red;">{{ $message }}</small>
-    @enderror
+    @if(!empty($name))
+        @error($name)
+            <small style="color:red;">{{ $message }}</small>
+        @enderror
+    @endif
 </div>

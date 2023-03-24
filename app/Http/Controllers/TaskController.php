@@ -44,7 +44,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $data = $request->except('_token');
         Validator::make(
             $data,
@@ -60,7 +59,7 @@ class TaskController extends Controller
             ]
         )->validate();
         Task::insert($data);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Tarefa Criada com sucesso!');
     }
 
     /**
@@ -84,7 +83,6 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
         $task = Task::find($id);
         $categories = Category::all();
         $users = User::all();
@@ -104,12 +102,24 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data = $request->except('_token');
-        dd($data);
+        Validator::make(
+            $data,
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'due_date' => 'required',
+                'user_id' => 'required',
+                'category_id' => 'required',
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório'
+            ]
+        )->validate();
+
         $task = Task::find($id);
         $task->update($data);
-        return redirect()->route('task.edit', ['id' => $id]);
+        return redirect()->route('tasks.edit', ['task' => $id])->with('success', 'Tarefa Alterada com sucesso!');
     }
 
     /**

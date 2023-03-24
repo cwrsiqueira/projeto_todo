@@ -13,32 +13,32 @@
                 </ul>
             </div>
         @endif
-        <form action="{{route('tasks.store')}}" method="post">
+        <form action="{{ route('tasks.store') }}" method="post">
             @csrf
 
-            <x-input  name="title" label="Título" placeholder="Digite o título" value="{{ old('title') ?? '' }}" />
+            <x-input name="title" label="Título" placeholder="Digite o título" value="{{ old('title') ?? '' }}" />
 
-            <x-text_area
-                name="description"
-                label="Descrição"
-                placeholder="Digite a descrição"
-                value="{{ old('description') ?? '' }}"
-            />
+            <x-text_area name="description" label="Descrição" placeholder="Digite a descrição"
+                value="{{ old('description') ?? '' }}" />
 
-            <x-select name="user_id" label="Responsável" :items=$users optionValue="id" optionLabel="name"  />
+            <x-select name="user_id" label="Responsável" :items=$users optionValue="id" optionLabel="name"
+                currentValue="" />
 
             <div class="row">
-                <x-input name="due_date" label="Prazo" type="datetime-local" value="{{old('due_date') ?? date('Y-d-m h:i')}}"  />
+                <x-input name="due_date" label="Prazo" type="datetime-local"
+                    value="{{ old('due_date') ?? date('Y-d-m h:i') }}" />
 
-                <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"  />
+                <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"
+                    currentValue="" />
             </div>
 
             <div class="row">
-                <x-input type="submit" value="Salvar" name="submit" class="btn btn-primary"/>
-                @if(!old())
-                    <x-input type="reset" value="Limpar Formulário" name="submit" class="btn"/>
+                <x-input type="submit" value="Salvar" class="btn btn-primary" />
+                @if (!old())
+                    <x-input type="reset" value="Limpar Formulário" class="btn" />
                 @else
-                    <x-button href="{{ route('tasks.create') }}" title="Limpar Formulário" class="form-control tagA-inputBtn" />
+                    <x-button href="{{ route('tasks.create') }}" title="Limpar Formulário"
+                        class="form-control tagA-inputBtn" />
                 @endif
             </div>
         </form>

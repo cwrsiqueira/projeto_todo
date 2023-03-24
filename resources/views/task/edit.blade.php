@@ -1,44 +1,48 @@
 <x-layout>
     <x-slot name="btn">
-        <x-button href="/" title="Voltar" />
+        <x-button href="/" title="Voltar" class="btn-primary" />
     </x-slot>
-    <h1>Editar Tarefa</h1>
-    <form action="{{route('task.update', ['id'=>$task->id])}}" method="post">
-        @method('PUT')
-        @csrf
-        <label for="title">Título:</label>
-        <input class="form-control" type="text" name="title" id="title" value="{{$task->title}}">
-
-        <label for="title">Descrição:</label>
-        <input class="form-control" type="text" name="description" id="description" value="{{$task->description}}">
-
-        <div class="row">
-            <div class="form-group m-3">
-                <label for="title">Prazo:</label>
-                <input class="form-control" type="datetime-local" name="due_date" id="due_date" value="{{date('Y-m-d h:i', strtotime($task->due_date)) ?? date('Y-m-d')}}">
-            </div>
-
-            <div class="form-group m-3">
-                <label for="user">Responsável:</label>
-                <select class="form-control" name="user_id" id="user">
-                    <option>Selecione...</option>
-                    @foreach ($users as $user)
-                        <option @if($task->user_id == $user->id) selected @endif value="{{$user->id}}">{{$user->name}}</option>
+    <div class="form-area">
+        <h1>Editar Tarefa</h1>
+        <x-alert type="success" message="{{ session('success') }}" />
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
                     @endforeach
-                </select>
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('tasks.update', ['task' => $task->id]) }}" method="post">
+            @method('PUT')
+            @csrf
+            <x-input name="title" label="Título" placeholder="Digite o título"
+                value="{{ old('title') ?? ($task->title ?? '') }}" />
+
+            <x-text_area name="description" label="Descrição" placeholder="Digite a descrição"
+                value="{{ old('description') ?? ($task->description ?? '') }}" />
+
+            <x-select name="user_id" label="Responsável" :items=$users optionValue="id" optionLabel="name"
+                currentValue="{{ $task->user_id }}" />
+
+            <div class="row">
+                <x-input name="due_date" label="Prazo" type="datetime-local"
+                    value="{{ old('due_date') ?? ($task->due_date ?? date('Y-d-m h:i')) }}" />
+
+                <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"
+                    currentValue="{{ $task->category_id }}" />
             </div>
 
-            <div class="form-group m-3">
-                <label for="category">Categoria:</label>
-                <select class="form-control" name="category_id" id="category">
-                    <option>Selecione...</option>
-                    @foreach ($categories as $category)
-                        <option @if($task->category_id == $category->id) selected @endif value="{{$category->id}}">{{$category->title}}</option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <x-input type="submit" value="Salvar" class="btn btn-primary" />
+                @if (!old())
+                    <x-input type="reset" value="Limpar Formulário" class="btn" />
+                @else
+                    <x-button href="{{ route('tasks.edit', ['task' => $task->id]) }}" title="Limpar Formulário"
+                        class="form-control tagA-inputBtn" />
+                @endif
             </div>
-        </div>
-
-        <input type="submit" value="Salvar" class="btn btn-primary">
-    </form>
+        </form>
+    </div>
 </x-layout>

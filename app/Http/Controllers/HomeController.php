@@ -10,7 +10,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $tasks = Task::all();
-
         return view('home', ['tasks' => $tasks]);
     }
 }

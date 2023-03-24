@@ -19,7 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('title')->nullable(false);
             $table->string('color')->default('#FFFFFF');
             $table->foreignIdFor(User::class)->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

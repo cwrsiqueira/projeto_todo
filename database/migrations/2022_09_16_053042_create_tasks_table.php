@@ -23,7 +23,8 @@ class CreateTasksTable extends Migration
             $table->dateTime('due_date');
             $table->foreignIdFor(User::class)->references('id')->on('users')->onDelete('cascade');
             $table->foreignIdFor(Category::class)->references('id')->on('categories')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

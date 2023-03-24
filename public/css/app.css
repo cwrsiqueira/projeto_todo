@@ -8,6 +8,8 @@
     --color-primary-light: #43a4ff;
     --alert-bg-danger: #ffc5c5;
     --alert-color-danger: red;
+    --alert-bg-success: #c4ffc4;
+    --alert-color-success: green;
 }
 
 * {
@@ -52,6 +54,7 @@ nav {
 .is_invalid {
     border: 1px solid var(--alert-color-danger) !important;
 }
+
 .is-invalid {
     border: 1px solid var(--alert-color-danger) !important;
 }
@@ -254,12 +257,18 @@ label {
 .alert-danger {
     background-color: var(--alert-bg-danger);
 }
+
 .alert-danger li {
     color: var(--alert-color-danger);
 }
 
+.alert-success {
+    background-color: var(--alert-bg-success);
+    color: var(--alert-color-success);
+}
+
 .alert-small {
-    color: var(--alert-color-danger);
+    color: var(--alert-color-success);
 }
 
 /* Styling a checkbox */
@@ -331,6 +340,7 @@ label {
     font-size: 16px;
     color: #444;
 }
+
 /*  */
 
 .area_tasks_item_priority {
@@ -375,4 +385,3 @@ label {
 .area_tasks_item_actions img.btn-delete:hover {
     background-color: rgba(255, 0, 0, 0.1);
 }
-
