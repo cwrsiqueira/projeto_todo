@@ -2,14 +2,12 @@
     title="Prazo: {{ date('d/m/Y H:i:s', strtotime($data->due_date)) }} - Responsável: {{ $data->user->name }} - Descrição: {{ $data->description }}">
     <div class="area_tasks_item_title">
 
-        <div id="inputPreview" title="Marcar/Desmarcar Concluída">
-            <input name="cssCheckbox" id="demo_opt_{{ $data->id }}" type="checkbox" class="css-checkbox"
-                @if ($data && $data->done) checked @endif>
-            <label for="demo_opt_{{ $data->id }}">
-                <div class="text">{{ $data->title }}</div>
-            </label>
-        </div>
+        <x-input_checkbox title="{{ $data->title }}" name="done_{{ $data->id }}" value="{{ $data->done ?? '0' }}"
+            onclick="marcarConcluida(this)" />
 
+    </div>
+    <div class="area_tasks_item_due_date">
+        <div class="due_date">{{ date('d/m/Y ( H:i:s )', strtotime($data->due_date)) }}</div>
     </div>
     <div class="area_tasks_item_priority">
         <div class="priority_mark" style="background-color:{{ $data->category->color }}"></div>
@@ -32,8 +30,3 @@
         </form>
     </div>
 </div>
-@section('js')
-    <script>
-        alert('carregando script na página de tarefas')
-    </script>
-@endsection

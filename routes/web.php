@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -21,3 +22,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 Route::resource('tasks', TaskController::class);
+
+// AJAX REQUESTS
+Route::get("/checkTask", [AjaxController::class, "checkTask"])->name("checkTask");

@@ -117,6 +117,9 @@ class TaskController extends Controller
             ]
         )->validate();
 
+        $done = isset($data['done']) ? '1' : '0';
+        $data['done'] = $done;
+
         $task = Task::find($id);
         $task->update($data);
         return redirect()->route('tasks.edit', ['task' => $id])->with('success', 'Tarefa Alterada com sucesso!');

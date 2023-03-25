@@ -33,8 +33,10 @@
     </section>
     <section class="list">
         <div class="select_tasks">
-            <select name="" id="">
-                <option value="">Todas as tarefas</option>
+            <select name="checkUncheckAll" id="checkUncheckAll">
+                <option selected disabled value="">Todas as tarefas</option>
+                <option value="checkAll">Marcar Todas</option>
+                <option value="uncheckAll">Desmarcar Todas</option>
             </select>
         </div>
         <div class="area_tasks">
@@ -44,4 +46,44 @@
             @endforeach
         </div>
     </section>
+    @section('js')
+        <script>
+            document.querySelector("#checkUncheckAll").addEventListener('change', (e) => {
+                marcarConcluida({
+                    checked: e.target.value == 'checkAll',
+                    all: true
+                });
+            })
+
+            const marcarConcluida = (v) => {
+                let checkTask = v.checked ? 1 : 0;
+
+                if (!v.all) {
+                    let idTask = v.getAttribute("id").split("_")[1];
+                    let ajax = new XMLHttpRequest();
+                    ajax.open("GET", "/checkTask?done=" + checkTask + "&id=" + idTask, true);
+                    ajax.send();
+                    ajax.onreadystatechange = () => {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            let data = ajax.responseText;
+                            location.reload();
+                        }
+                    }
+                    return;
+                }
+
+                let idTask = 'all';
+                let ajax = new XMLHttpRequest();
+                ajax.open("GET", "/checkTask?done=" + checkTask + "&id=" + idTask, true);
+                ajax.send();
+                ajax.onreadystatechange = () => {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        let data = ajax.responseText;
+                        location.reload();
+                    }
+                }
+                return;
+            };
+        </script>
+    @endsection
 </x-layout>

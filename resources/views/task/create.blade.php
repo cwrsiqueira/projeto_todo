@@ -26,7 +26,7 @@
 
             <div class="row">
                 <x-input name="due_date" label="Prazo" type="datetime-local"
-                    value="{{ old('due_date') ?? date('Y-d-m h:i') }}" />
+                    value="{{ old('due_date') ?? date('Y-m-d H:i') }}" />
 
                 <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"
                     currentValue="" />

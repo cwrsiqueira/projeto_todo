@@ -8,6 +8,7 @@
     <title>Projeto Todo | {{ $page ?? 'ToDo' }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    @yield('css')
 </head>
 
 <body>
@@ -26,6 +27,7 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>

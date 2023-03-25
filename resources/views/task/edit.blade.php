@@ -28,11 +28,13 @@
 
             <div class="row">
                 <x-input name="due_date" label="Prazo" type="datetime-local"
-                    value="{{ old('due_date') ?? ($task->due_date ?? date('Y-d-m h:i')) }}" />
+                    value="{{ old('due_date') ?? (date('Y-m-d H:i', strtotime($task->due_date)) ?? date('Y-m-d H:i')) }}" />
 
                 <x-select name="category_id" label="Categoria" :items=$categories optionValue="id" optionLabel="title"
                     currentValue="{{ $task->category_id }}" />
             </div>
+
+            <x-input_checkbox title="Marcar como concluída" name="done" value="{{ $task->done }}" />
 
             <div class="row">
                 <x-input type="submit" value="Salvar" class="btn btn-primary" />
